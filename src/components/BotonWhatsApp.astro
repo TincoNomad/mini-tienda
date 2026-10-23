@@ -1,13 +1,19 @@
 ---
-import { armarWhatsApp } from '../lib/whatsapp.ts';
+import { waLink, waMessages } from '../data/site';
 
 interface Props {
 	texto?: string;
 	clase?: string;
+	message?: string;
 }
 
-const { texto = 'Pedir por WhatsApp', clase = 'btn' } = Astro.props;
-const href = armarWhatsApp('Hola, quiero pedir información sobre audífonos.');
+const {
+	texto = 'Pedir por WhatsApp',
+	clase = 'btn',
+	message = waMessages.general,
+} = Astro.props;
+
+const href = waLink(message);
 ---
 
-<a class={clase} href={href}>{texto}</a>
+<a class={clase} href={href} target="_blank" rel="noopener noreferrer">{texto}</a>

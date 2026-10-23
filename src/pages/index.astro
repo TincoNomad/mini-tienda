@@ -2,17 +2,22 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Bento from '../components/Bento.astro';
 import Catalogo from '../components/Catalogo.vue';
 import ComoPedir from '../components/ComoPedir.astro';
+import Addons from '../components/Addons.astro';
 import Footer from '../components/Footer.astro';
-import productos from '../data/productos.json';
-import categorias from '../data/categorias.json';
+import { productos, categorias } from '../data/site';
 ---
 
 <Base>
 	<Header />
-	<Hero />
+	<section class="wrap two" style="padding-top: 32px; padding-bottom: 24px;">
+		<Hero />
+		<Bento />
+	</section>
 	<Catalogo productos={productos} categorias={categorias} client:load />
 	<ComoPedir />
+	<Addons />
 	<Footer />
 </Base>

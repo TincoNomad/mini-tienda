@@ -3,17 +3,11 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import BotonWhatsApp from '../../components/BotonWhatsApp.astro';
-import { armarWhatsApp } from '../../lib/whatsapp.ts';
-import productos from '../../data/productos.json';
-import categorias from '../../data/categorias.json';
-import type { Producto } from '../../types.ts';
+import { productos, categorias, waMessages } from '../../data/site';
+import type { Producto } from '../../types';
 
 export function getStaticPaths() {
   return productos.map((p) => ({ params: { slug: p.slug } }));
-}
-
-interface Props {
-  producto: Producto;
 }
 
 const { slug } = Astro.params;
@@ -27,8 +21,6 @@ const categoria = categorias.find((c) => c.slug === producto.categoria);
 const otros = productos
   .filter((p) => p.categoria === producto.categoria && p.slug !== producto.slug)
   .slice(0, 3);
-
-const waLink = armarWhatsApp(`Hola, quiero pedir el ${producto.nombre}.`);
 ---
 
 <Base title={`${producto.nombre} · Marketplace de audífonos`}>
@@ -48,9 +40,10 @@ const waLink = armarWhatsApp(`Hola, quiero pedir el ${producto.nombre}.`);
       <ul style="margin: 0; padding-left: 20px; font-size: 18px; line-height: 1.7;">
         {producto.specs.map((spec) => <li>{spec}</li>)}
       </ul>
-      <a class="btn" style="align-self: flex-start; font-size: 18px;" href={waLink}>
-        Pedir por WhatsApp
-      </a>
+      <BotonWhatsApp
+        texto="Pedir por WhatsApp"
+        message={waMessages.producto(producto.nombre)}
+      />
       <p style="margin: 0; font-size: 15px; color: var(--muted);">
         El mensaje se abre con el nombre del producto ya escrito.
       </p>
@@ -77,7 +70,7 @@ const waLink = armarWhatsApp(`Hola, quiero pedir el ${producto.nombre}.`);
                 style="text-align: center;"
                 href={`/producto/${p.slug}`}
               >
-                Pedir información
+                Ver detalles
               </a>
             </article>
           ))}

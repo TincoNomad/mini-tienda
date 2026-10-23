@@ -1,0 +1,45 @@
+---
+import { trustItems } from '../../data/site';
+---
+
+<section class="wrap section" aria-labelledby="trust-title">
+	<h2 id="trust-title" style="font-size: 32px; margin: 0 0 20px;">Compra con confianza</h2>
+	<div class="trust-grid">
+		{
+			trustItems.map((item) => (
+				<div class="card trust-item">
+					<span class="trust-icon" aria-hidden="true">
+						{item.icon}
+					</span>
+					<strong>{item.title}</strong>
+					<span class="trust-description">{item.description}</span>
+				</div>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.trust-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 16px;
+	}
+
+	.trust-item {
+		align-items: center;
+		gap: 6px;
+		text-align: center;
+	}
+
+	.trust-icon {
+		font-size: 28px;
+		line-height: 1;
+	}
+
+	.trust-description {
+		color: var(--muted);
+		font-size: 14px;
+		line-height: 1.4;
+	}
+</style>

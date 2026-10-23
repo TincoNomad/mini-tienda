@@ -28,6 +28,14 @@ function updateUrl() {
   window.history.replaceState(null, '', url);
 }
 
+function clearFilters() {
+  search.value = '';
+  activeCategory.value = null;
+
+  const input = document.getElementById('q') as HTMLInputElement | null;
+  if (input) input.value = '';
+}
+
 onMounted(() => {
   readUrl();
   window.addEventListener('popstate', readUrl);
@@ -60,7 +68,7 @@ function categoryName(slug: string) {
   <section id="catalogo" class="wrap" style="padding-top: 56px; padding-bottom: 24px;">
     <h2 class="neon neon-small" style="margin-bottom: 24px;">Catálogo</h2>
 
-    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;">
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;">
       <button
         class="chip"
         :aria-pressed="activeCategory === null"
@@ -79,6 +87,19 @@ function categoryName(slug: string) {
       </button>
     </div>
 
+    <p
+      v-if="search || activeCategory"
+      style="margin: 0 0 24px; font-size: 15px; color: var(--muted);"
+    >
+      Filtro activo:
+      <strong v-if="search">"{{ search }}"</strong>
+      <strong v-if="activeCategory">{{ categoryName(activeCategory) }}</strong>
+      ·
+      <button class="chip" @click="clearFilters" style="margin-left: 4px;">
+        Limpiar filtros
+      </button>
+    </p>
+
     <div v-if="filtered.length" class="grid">
       <article v-for="p in filtered" :key="p.slug" class="card">
         <div class="placeholder" style="height: 150px;">[foto del producto]</div>
@@ -90,7 +111,7 @@ function categoryName(slug: string) {
           style="text-align: center;"
           :href="`/producto/${p.slug}`"
         >
-          Pedir información
+          Ver detalles
         </a>
       </article>
     </div>
@@ -99,7 +120,7 @@ function categoryName(slug: string) {
       <strong>No encontramos resultados</strong>
       <p style="margin: 0;">
         Prueba con otra palabra o vuelve a
-        <button class="chip" @click="search = ''; activeCategory = null">Todos</button>.
+        <button class="chip" @click="clearFilters">Todos</button>.
       </p>
     </div>
   </section>

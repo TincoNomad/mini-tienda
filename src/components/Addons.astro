@@ -1,0 +1,26 @@
+---
+import { siteConfig } from '../data/site';
+
+const modules = import.meta.glob<{ default: any }>('../addons/*/index.astro', {
+	eager: true,
+});
+
+const registry = new Map(
+	Object.entries(modules).map(([path, mod]) => [path.split('/').at(-2)!, mod.default]),
+);
+
+if (import.meta.env.DEV) {
+	for (const [name, enabled] of Object.entries(siteConfig.features)) {
+		if (enabled && !registry.has(name)) {
+			console.warn(`[addons] No existe src/addons/${name}/index.astro`);
+		}
+	}
+}
+
+const enabled = Object.entries(siteConfig.features)
+	.filter(([, on]) => on)
+	.map(([name]) => ({ name, Component: registry.get(name) }))
+	.filter((item): item is { name: string; Component: any } => Boolean(item.Component));
+---
+
+{enabled.map(({ Component }) => <Component />)}

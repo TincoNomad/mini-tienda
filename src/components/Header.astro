@@ -1,8 +1,9 @@
 ---
+import { siteConfig } from '../data/site';
 import BotonWhatsApp from './BotonWhatsApp.astro';
 ---
 
 <header class="wrap hdr">
-	<a class="logo" href="/">[MARCA]</a>
+	<a class="logo" href="/">{siteConfig.name}</a>
 	<BotonWhatsApp />
 </header>
