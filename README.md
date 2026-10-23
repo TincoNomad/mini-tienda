@@ -1,46 +1,57 @@
-# Astro Starter Kit: Basics
+# Marketplace de audífonos
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Demo de portafolio: catálogo estático, buscador con filtros y pedidos por WhatsApp.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Estructura
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+├── data/
+│   ├── productos.json       # 15 productos de relleno
+│   └── categorias.json      # 5 categorías del bento
+├── components/
+│   ├── Header.astro
+│   ├── Hero.astro
+│   ├── Bento.astro
+│   ├── ComoPedir.astro
+│   ├── Footer.astro
+│   ├── BotonWhatsApp.astro
+│   └── Catalogo.vue         # island: chips, búsqueda, tarjetas
+├── layouts/
+│   └── Base.astro
+├── lib/
+│   └── whatsapp.ts          # arma enlaces wa.me
+├── pages/
+│   ├── index.astro
+│   ├── producto/[slug].astro
+│   ├── como-esta-hecho.astro
+│   └── 404.astro
+├── styles/
+│   └── global.css
+└── types.ts
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Configuración
 
-## 🧞 Commands
+Crea un archivo `.env` en la raíz con el número de WhatsApp de pedidos:
 
-All commands are run from the root of the project, from a terminal:
+```sh
+PUBLIC_WHATSAPP_NUMBER=51999999999
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+Sin este número los botones de WhatsApp no abrirán conversación.
 
-## 👀 Want to learn more?
+## Comandos
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```sh
+pnpm install      # instalar dependencias
+pnpm dev          # servidor de desarrollo
+pnpm build        # build de producción en ./dist
+pnpm preview      # previsualizar el build
+```
+
+## Notas
+
+- Los productos son datos de relleno. Reemplázalos por modelos reales antes de mostrarlo a clientes.
+- Las fotos son placeholders grises. Agrégalas en `src/assets/productos/` y actualiza los JSON.
+- El catálogo es un island de Vue hidratado con `client:load` para leer los filtros de la URL.

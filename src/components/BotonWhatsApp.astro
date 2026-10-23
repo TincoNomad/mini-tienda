@@ -1,0 +1,13 @@
+---
+import { armarWhatsApp } from '../lib/whatsapp.ts';
+
+interface Props {
+	texto?: string;
+	clase?: string;
+}
+
+const { texto = 'Pedir por WhatsApp', clase = 'btn' } = Astro.props;
+const href = armarWhatsApp('Hola, quiero pedir información sobre audífonos.');
+---
+
+<a class={clase} href={href}>{texto}</a>

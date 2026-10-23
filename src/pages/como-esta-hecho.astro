@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Cómo está hecho · Marketplace de audífonos">
+	<Header />
+	<section class="wrap" style="padding-top: 32px;">
+		<h1 class="neon" style="font-size: clamp(48px, 7vw, 88px);">Hecho para ser rápido</h1>
+		<p style="font-size: 20px; max-width: 620px; margin: 24px 0 0;">
+			Una demo de portafolio: catálogo estático, buscador en el navegador y pedidos por
+			WhatsApp. Sin animaciones decorativas.
+		</p>
+	</section>
+
+	<section class="wrap" style="padding-top: 40px;">
+		<div class="grid">
+			<div class="card">
+				<strong style="font-size: 48px;">[95+]</strong>
+				Lighthouse móvil, medido
+			</div>
+			<div class="card">
+				<strong style="font-size: 48px;">[XX KB]</strong>
+				Peso de la página
+			</div>
+			<div class="card">
+				<strong style="font-size: 48px;">[X.X s]</strong>
+				LCP en móvil
+			</div>
+		</div>
+	</section>
+
+	<section class="wrap two" style="padding-top: 40px; gap: 20px;">
+		<div class="card">
+			<strong style="font-size: 22px;">Stack</strong>
+			Astro para las páginas, un island de Vue para el buscador y los filtros, datos en JSON.
+		</div>
+		<div class="card">
+			<strong style="font-size: 22px;">Cómo se actualiza el catálogo</strong>
+			Se edita el JSON de productos y se regenera el sitio.
+		</div>
+		<div class="card">
+			<strong style="font-size: 22px;">Cómo llegan los pedidos</strong>
+			Cada botón abre WhatsApp con el producto ya escrito en el mensaje.
+		</div>
+	</section>
+
+	<section class="wrap" style="padding-top: 32px;">
+		<a class="btn" href="#">Ver el código [enlace a GitHub]</a>
+	</section>
+
+	<Footer />
+</Base>

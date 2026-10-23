@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BotonWhatsApp from '../../components/BotonWhatsApp.astro';
+import { armarWhatsApp } from '../../lib/whatsapp.ts';
+import productos from '../../data/productos.json';
+import categorias from '../../data/categorias.json';
+import type { Producto } from '../../types.ts';
+
+export function getStaticPaths() {
+  return productos.map((p) => ({ params: { slug: p.slug } }));
+}
+
+interface Props {
+  producto: Producto;
+}
+
+const { slug } = Astro.params;
+const producto = productos.find((p) => p.slug === slug);
+
+if (!producto) {
+  return Astro.redirect('/404');
+}
+
+const categoria = categorias.find((c) => c.slug === producto.categoria);
+const otros = productos
+  .filter((p) => p.categoria === producto.categoria && p.slug !== producto.slug)
+  .slice(0, 3);
+
+const waLink = armarWhatsApp(`Hola, quiero pedir el ${producto.nombre}.`);
+---
+
+<Base title={`${producto.nombre} · Marketplace de audífonos`}>
+  <Header />
+  <div class="wrap" style="padding-top: 8px; padding-bottom: 24px;">
+    <a href="/#catalogo" style="font-weight: 700;">← Volver al catálogo</a>
+  </div>
+
+  <section class="wrap two">
+    <div class="placeholder" style="min-height: 420px;">[foto principal del producto]</div>
+    <div style="display: flex; flex-direction: column; gap: 20px; justify-content: center;">
+      <span class="chip" style="align-self: flex-start; cursor: default;">
+        {categoria?.nombre ?? producto.categoria}
+      </span>
+      <h1 style="font-size: 44px; line-height: 1.1; margin: 0;">{producto.nombre}</h1>
+      <span style="font-size: 32px; font-weight: 700;">S/ {producto.precio}</span>
+      <ul style="margin: 0; padding-left: 20px; font-size: 18px; line-height: 1.7;">
+        {producto.specs.map((spec) => <li>{spec}</li>)}
+      </ul>
+      <a class="btn" style="align-self: flex-start; font-size: 18px;" href={waLink}>
+        Pedir por WhatsApp
+      </a>
+      <p style="margin: 0; font-size: 15px; color: var(--muted);">
+        El mensaje se abre con el nombre del producto ya escrito.
+      </p>
+    </div>
+  </section>
+
+  {
+    otros.length > 0 && (
+      <section class="wrap" style="padding-top: 56px;">
+        <h2 style="font-size: 32px; margin: 0 0 20px;">Otros en esta categoría</h2>
+        <div class="grid">
+          {otros.map((p) => (
+            <article class="card">
+              <div class="placeholder" style="height: 150px;">
+                [foto del producto]
+              </div>
+              <span style="font-size: 14px; color: var(--muted);">
+                {categoria?.nombre ?? p.categoria}
+              </span>
+              <strong style="font-size: 18px;">{p.nombre}</strong>
+              <span style="font-size: 20px; font-weight: 700;">S/ {p.precio}</span>
+              <a
+                class="btn btn-small"
+                style="text-align: center;"
+                href={`/producto/${p.slug}`}
+              >
+                Pedir información
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <Footer />
+</Base>
