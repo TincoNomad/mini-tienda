@@ -52,7 +52,6 @@ img {
 
 .hero-content {
   position: relative;
-  z-index: 1;
   width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
@@ -77,11 +76,22 @@ img {
 }
 
 .hero-title {
+  position: relative;
   font-size: clamp(83px, 13vw, 156px);
 }
 
-.hero-copy .hero-title {
+.hero-title-wrap {
+  position: relative;
+  width: fit-content;
   margin-bottom: clamp(50px, 3.5vw, 90px);
+  font-size: clamp(83px, 13vw, 156px);
+}
+
+.hero-title-wrap .hero-title-os {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
 }
 
 .hero-description {
@@ -137,13 +147,23 @@ img {
   position: absolute;
   left: 50%;
   bottom: -20%;
-  z-index: 0;
+  z-index: 1;
   width: auto;
   height: 120%;
   max-width: none;
   transform: translateX(-50%);
   pointer-events: none;
   object-fit: contain;
+}
+
+.hero-eyebrow,
+.hero-description,
+.hero-actions,
+.hero-search,
+.hero-popular,
+.bento {
+  position: relative;
+  z-index: 2;
 }
 
 #catalogo {
