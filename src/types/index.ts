@@ -23,6 +23,7 @@ export interface SiteConfig {
 	name: string;
 	description: string;
 	whatsappNumber: string;
+	whatsappLabel: string;
 	contact: Contact;
 	theme: Theme;
 	features: Record<string, boolean>;

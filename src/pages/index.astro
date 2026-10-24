@@ -12,9 +12,10 @@ import { productos, categorias } from '../data/site';
 
 <Base>
 	<Header />
-	<section class="wrap two" style="padding-top: 32px; padding-bottom: 24px;">
+	<section class="hero wrap">
 		<Hero />
 		<Bento />
+		<a class="hero-scroll" href="#catalogo">↓ Ver catálogo</a>
 	</section>
 	<Catalogo productos={productos} categorias={categorias} client:load />
 	<ComoPedir />

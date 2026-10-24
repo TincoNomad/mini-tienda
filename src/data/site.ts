@@ -4,6 +4,7 @@ export const siteConfig: SiteConfig = {
 	name: '[MARCA]',
 	description: 'Compara modelos y pídelos por WhatsApp.',
 	whatsappNumber: import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '',
+	whatsappLabel: 'Hablar con un vendedor',
 	contact: {
 		phone: '',
 		email: '',
@@ -38,6 +39,7 @@ export function waLink(message: string) {
 
 export const waMessages = {
 	general: 'Hola, quiero información sobre audífonos.',
+	vendedor: 'Hola, quiero hablar con un vendedor sobre audífonos.',
 	producto: (nombre: string) => `Hola, quiero pedir el ${nombre}.`,
 } as const;
 

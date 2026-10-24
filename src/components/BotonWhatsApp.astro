@@ -1,5 +1,5 @@
 ---
-import { waLink, waMessages } from '../data/site';
+import { siteConfig, waLink, waMessages } from '../data/site';
 
 interface Props {
 	texto?: string;
@@ -8,9 +8,9 @@ interface Props {
 }
 
 const {
-	texto = 'Pedir por WhatsApp',
+	texto = siteConfig.whatsappLabel,
 	clase = 'btn',
-	message = waMessages.general,
+	message = waMessages.vendedor,
 } = Astro.props;
 
 const href = waLink(message);

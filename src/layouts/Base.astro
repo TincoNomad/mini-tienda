@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { siteConfig } from '../data/site';
+import FlotanteWhatsApp from '../components/FlotanteWhatsApp.astro';
 
 interface Props {
 	title?: string;
@@ -41,5 +42,6 @@ const themeVars = [
 	</head>
 	<body>
 		<slot />
+		<FlotanteWhatsApp />
 	</body>
 </html>

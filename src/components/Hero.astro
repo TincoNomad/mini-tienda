@@ -1,12 +1,16 @@
 ---
 ---
 
-<div style="display: flex; flex-direction: column; gap: 24px; justify-content: center;">
-	<h1 class="neon" style="font-size: clamp(64px, 10vw, 120px);">Audífonos</h1>
-	<p style="font-size: 22px; margin: 0; max-width: 480px;">
+<div class="hero-copy">
+	<p class="hero-eyebrow">Envíos a todo el Perú · Pedidos por WhatsApp</p>
+	<h1 class="neon hero-title">Audífonos</h1>
+	<p class="hero-description">
 		Para trabajar, entrenar y viajar. Compara modelos y pídelos directo por WhatsApp.
 	</p>
-	<form action="#catalogo" method="get" style="display: flex; gap: 8px; flex-wrap: wrap;">
+	<div class="hero-actions">
+		<a class="btn hero-cta" href="#catalogo">Elegir mis audífonos</a>
+	</div>
+	<form class="hero-search" action="#catalogo" method="get">
 		<label for="q" class="visually-hidden">Buscar audífonos</label>
 		<input
 			id="q"
@@ -15,11 +19,9 @@
 			type="search"
 			placeholder="Buscar audífonos..."
 		/>
-		<button class="btn" type="submit" style="cursor: pointer;">Buscar</button>
+		<button class="btn btn-secondary" type="submit" style="cursor: pointer;">Buscar</button>
 	</form>
-	<p style="margin: 0; font-size: 15px; color: var(--muted);">
-		Populares: Inalámbricos · Gaming · Bluetooth
-	</p>
+	<p class="hero-popular">Populares: Inalámbricos · Gaming · Bluetooth</p>
 </div>
 
 <script>

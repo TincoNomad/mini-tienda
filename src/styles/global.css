@@ -6,6 +6,7 @@
 	--card: #ffffff;
 	--placeholder: #d9d3c3;
 	--muted: #4a4a4a;
+	--header-height: 84px;
 }
 
 * {
@@ -37,6 +38,112 @@ img {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 0 24px;
+}
+
+.hero {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+	align-items: center;
+	gap: 48px;
+	min-height: calc(100vh - var(--header-height));
+	min-height: calc(100svh - var(--header-height));
+	padding-top: 32px;
+	padding-bottom: 96px;
+}
+
+.hero-copy {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	justify-content: center;
+}
+
+.hero-eyebrow {
+	margin: 0;
+	color: var(--muted);
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.hero-title {
+	font-size: clamp(64px, 10vw, 120px);
+}
+
+.hero-description {
+	margin: 0;
+	max-width: 480px;
+	font-size: 22px;
+}
+
+.hero-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.hero-cta {
+	font-size: 18px;
+	padding: 14px 24px;
+}
+
+.hero-search {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.hero-popular {
+	margin: 0;
+	color: var(--muted);
+	font-size: 15px;
+}
+
+.hero-scroll {
+	position: absolute;
+	left: 50%;
+	bottom: 24px;
+	transform: translateX(-50%);
+	color: var(--muted);
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.hero-scroll:hover {
+	color: var(--text);
+}
+
+.btn-secondary {
+	background: var(--card);
+}
+
+.btn-secondary:hover {
+	background: var(--accent-hover);
+}
+
+@media (max-width: 900px) {
+	.hero {
+		grid-template-columns: 1fr;
+		min-height: auto;
+		gap: 32px;
+		padding-top: 24px;
+		padding-bottom: 48px;
+	}
+
+	.hero-title {
+		font-size: clamp(56px, 18vw, 88px);
+	}
+
+	.hero-description {
+		font-size: 20px;
+	}
+
+	.hero-scroll {
+		display: none;
+	}
 }
 
 .hdr {
@@ -95,6 +202,13 @@ img {
 	font-size: 48px;
 	-webkit-text-stroke: 6px var(--text);
 	text-shadow: 4px 4px 0 var(--text);
+}
+
+.neon-md {
+	font-size: 40px;
+	-webkit-text-stroke: 4px var(--text);
+	text-shadow: 3px 3px 0 var(--text);
+	margin: 0 0 20px;
 }
 
 .placeholder {
