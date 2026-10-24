@@ -65,7 +65,22 @@ function categoryName(slug: string) {
 </script>
 
 <template>
-  <section id="catalogo" class="wrap" style="padding-top: 56px; padding-bottom: 24px;">
+  <section id="catalogo" class="catalogo-section">
+    <img
+      class="catalogo-flower catalogo-flower-top"
+      src="/images/flawer_decorator.webp"
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+    />
+    <img
+      class="catalogo-flower catalogo-flower-bottom"
+      src="/images/flawer_decorator.webp"
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+    />
+    <div class="wrap" style="padding-top: 56px; padding-bottom: 24px;">
     <h2 class="neon neon-small grad-catalogo" data-text="Catálogo" style="margin-bottom: 24px;">
       Catálogo
     </h2>
@@ -124,6 +139,7 @@ function categoryName(slug: string) {
         Prueba con otra palabra o vuelve a
         <button class="chip" @click="clearFilters">Todos</button>.
       </p>
+    </div>
     </div>
   </section>
 </template>

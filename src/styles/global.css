@@ -169,6 +169,27 @@ img {
 #catalogo {
   position: relative;
   z-index: 1;
+  overflow: clip;
+}
+
+.catalogo-flower {
+  position: absolute;
+  z-index: -1;
+  width: clamp(80px, 22vw, 260px);
+  height: auto;
+  pointer-events: none;
+}
+
+.catalogo-flower-top {
+  top: clamp(24px, 3vw, 48px);
+  right: 0;
+  transform: rotate(205deg);
+}
+
+.catalogo-flower-bottom {
+  bottom: clamp(24px, 3vw, 48px);
+  left: 0;
+  transform: rotate(-25deg);
 }
 
 .hero-scroll:hover {

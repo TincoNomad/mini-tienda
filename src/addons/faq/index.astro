@@ -2,23 +2,48 @@
 import { faqs } from '../../data/site';
 ---
 
-<section class="wrap section" aria-labelledby="faq-title">
-	<h2 id="faq-title" class="neon neon-md grad-faq" data-text="Preguntas frecuentes">
-		Preguntas frecuentes
-	</h2>
-	<div class="faq-list">
-		{
-			faqs.map((faq) => (
-				<details class="faq-item">
-					<summary>{faq.question}</summary>
-					<p>{faq.answer}</p>
-				</details>
-			))
-		}
+<section class="faq-section" aria-labelledby="faq-title">
+	<img
+		class="faq-flower"
+		src="/images/flawer_decorator.webp"
+		alt=""
+		aria-hidden="true"
+		loading="lazy"
+	/>
+	<div class="wrap section">
+		<h2 id="faq-title" class="neon neon-md grad-faq" data-text="Preguntas frecuentes">
+			Preguntas frecuentes
+		</h2>
+		<div class="faq-list">
+			{
+				faqs.map((faq) => (
+					<details class="faq-item">
+						<summary>{faq.question}</summary>
+						<p>{faq.answer}</p>
+					</details>
+				))
+			}
+		</div>
 	</div>
 </section>
 
 <style>
+	.faq-section {
+		position: relative;
+		z-index: 1;
+		overflow: clip;
+	}
+
+	.faq-flower {
+		position: absolute;
+		right: 0;
+		bottom: clamp(24px, 3vw, 48px);
+		z-index: -1;
+		width: clamp(80px, 22vw, 260px);
+		height: auto;
+		pointer-events: none;
+	}
+
 	.faq-list {
 		display: flex;
 		flex-direction: column;
