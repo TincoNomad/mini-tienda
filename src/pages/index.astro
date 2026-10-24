@@ -12,9 +12,89 @@ import { productos, categorias } from '../data/site';
 
 <Base>
 	<Header />
-	<section class="hero wrap">
-		<Hero />
-		<Bento />
+	<section class="hero">
+		<div class="colibri" aria-hidden="true">
+			<svg viewBox="0 0 210 140" focusable="false">
+				<g
+					stroke="#141414"
+					stroke-width="5"
+					stroke-linejoin="round"
+					stroke-linecap="round"
+				>
+					<g class="ala ala-b">
+						<path
+							d="M112 66 C104 40 84 22 52 14 C66 34 84 54 98 76 Z"
+							fill="#FF7A00"
+						></path>
+					</g>
+					<ellipse
+						cx="57.9"
+						cy="109.6"
+						rx="8"
+						ry="28.6"
+						transform="rotate(52 57.9 109.6)"
+						fill="#35B6FF"
+					></ellipse>
+					<ellipse
+						cx="70.5"
+						cy="113.9"
+						rx="8"
+						ry="26.4"
+						transform="rotate(38 70.5 113.9)"
+						fill="#FFF200"
+					></ellipse>
+					<ellipse
+						cx="108"
+						cy="70"
+						rx="14.7"
+						ry="38"
+						transform="rotate(50 108 70)"
+						fill="#B6FF00"
+					></ellipse>
+					<ellipse
+						cx="113.9"
+						cy="77"
+						rx="5.6"
+						ry="22"
+						transform="rotate(50 113.9 77)"
+						fill="#FFF200"
+						stroke="none"
+					></ellipse>
+					<circle cx="141" cy="46" r="15" fill="#B6FF00"></circle>
+					<ellipse
+						cx="148"
+						cy="58"
+						rx="6"
+						ry="9"
+						transform="rotate(50 148 58)"
+						fill="#FF2E93"
+						stroke="none"
+					></ellipse>
+					<path
+						d="M152 41.7 L204 33 L153 49.3 Z"
+						transform="rotate(20 152 45)"
+						fill="#141414"
+					></path>
+					<circle cx="145" cy="42" r="3.6" fill="#141414" stroke="none"></circle>
+					<circle cx="146.2" cy="41" r="1.2" fill="#F2EEE3" stroke="none"></circle>
+					<g class="ala ala-f">
+						<path
+							d="M114 64 C110 34 90 12 50 4 C64 28 86 52 104 78 Z"
+							fill="#FF2E93"
+						></path>
+						<path
+							d="M108 62 C104 42 88 26 66 18 C78 36 90 52 100 70 Z"
+							fill="#FFF200"
+							stroke="none"
+						></path>
+					</g>
+				</g>
+			</svg>
+		</div>
+		<div class="hero-content wrap">
+			<Hero />
+			<Bento />
+		</div>
 		<a class="hero-scroll" href="#catalogo">↓ Ver catálogo</a>
 	</section>
 	<Catalogo productos={productos} categorias={categorias} client:load />
@@ -22,3 +102,21 @@ import { productos, categorias } from '../data/site';
 	<Addons />
 	<Footer />
 </Base>
+
+<script>
+	(function () {
+		var SOLO_UNA_VEZ = false;
+		var c = document.querySelector('.colibri');
+		if (!c) return;
+
+		window.addEventListener('load', function () {
+			var visto = false;
+			try {
+				visto = SOLO_UNA_VEZ && sessionStorage.getItem('colibri-hero') === '1';
+				if (SOLO_UNA_VEZ) sessionStorage.setItem('colibri-hero', '1');
+			} catch (e) {}
+
+			if (!visto) c.classList.add('vuela');
+		});
+	})();
+</script>
