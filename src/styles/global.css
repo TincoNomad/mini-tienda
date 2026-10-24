@@ -298,6 +298,7 @@ img {
 .card {
 	border: 3px solid var(--text);
 	background: var(--card);
+	box-shadow: 4px 4px 0 var(--text);
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
@@ -325,6 +326,7 @@ img {
 
 .bento a {
 	border: 3px solid var(--text);
+	box-shadow: 4px 4px 0 var(--text);
 	padding: 14px;
 	display: flex;
 	flex-direction: column;
@@ -374,6 +376,29 @@ img {
 
 .footer a:hover {
 	text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.btn,
+	.bento a {
+		transition:
+			transform 0.12s ease-out,
+			box-shadow 0.12s ease-out;
+	}
+
+	.btn:active,
+	.bento a:active {
+		transform: translate(4px, 4px);
+		box-shadow: 0 0 0 var(--text);
+	}
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+	.btn:hover,
+	.bento a:hover {
+		transform: translate(2px, 2px);
+		box-shadow: 2px 2px 0 var(--text);
+	}
 }
 
 @media (max-width: 600px) {
