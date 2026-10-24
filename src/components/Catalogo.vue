@@ -66,7 +66,9 @@ function categoryName(slug: string) {
 
 <template>
   <section id="catalogo" class="wrap" style="padding-top: 56px; padding-bottom: 24px;">
-    <h2 class="neon neon-small" style="margin-bottom: 24px;">Catálogo</h2>
+    <h2 class="neon neon-small grad-catalogo" data-text="Catálogo" style="margin-bottom: 24px;">
+      Catálogo
+    </h2>
 
     <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;">
       <button

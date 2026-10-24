@@ -188,26 +188,72 @@ img {
 }
 
 .neon {
+	--neon-stroke: 16px;
+	--neon-shadow: 5px 5px;
+	position: relative;
+	isolation: isolate;
 	font-family: var(--font-display);
 	font-weight: 700;
-	color: var(--accent-hover);
-	-webkit-text-stroke: 8px var(--text);
-	paint-order: stroke fill;
-	text-shadow: 5px 5px 0 var(--text);
+	color: transparent;
+	-webkit-text-fill-color: transparent;
+	width: fit-content;
+	filter: drop-shadow(var(--neon-shadow) 0 var(--text));
 	margin: 0;
 	line-height: 1.05;
 }
 
-.neon-small {
-	font-size: 48px;
-	-webkit-text-stroke: 6px var(--text);
-	text-shadow: 4px 4px 0 var(--text);
+.neon::before,
+.neon::after {
+	content: attr(data-text);
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
 }
 
+.neon::before {
+	z-index: 0;
+	color: var(--text);
+	-webkit-text-fill-color: var(--text);
+	-webkit-text-stroke: var(--neon-stroke) var(--text);
+}
+
+.neon::after {
+	z-index: 1;
+	background-image: var(--neon-grad, linear-gradient(180deg, #ff2e93 0%, #ff7a00 100%));
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: transparent;
+}
+
+.grad-catalogo {
+	--neon-grad: linear-gradient(180deg, #ff2e93 0%, #ff7a00 100%);
+}
+
+.grad-como-pedir {
+	--neon-grad: linear-gradient(180deg, #ff7a00 0%, #fff200 100%);
+}
+
+.grad-confianza {
+	--neon-grad: linear-gradient(180deg, #fff200 0%, #b6ff00 100%);
+}
+
+.grad-faq {
+	--neon-grad: linear-gradient(180deg, #b6ff00 0%, #35b6ff 100%);
+}
+
+.neon-small {
+	--neon-stroke: 12px;
+	--neon-shadow: 4px 4px;
+	font-size: 48px;
+}
+
+
+
 .neon-md {
+	--neon-stroke: 8px;
+	--neon-shadow: 3px 3px;
 	font-size: 40px;
-	-webkit-text-stroke: 4px var(--text);
-	text-shadow: 3px 3px 0 var(--text);
 	margin: 0 0 20px;
 }
 
