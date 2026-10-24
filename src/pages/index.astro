@@ -13,8 +13,9 @@ import { productos, categorias } from '../data/site';
 <Base>
 	<Header />
 	<section class="hero">
-		<div class="colibri" aria-hidden="true">
-			<svg viewBox="0 0 210 140" focusable="false">
+		<div class="hero-colibri" aria-hidden="true">
+			<div class="colibri">
+				<svg viewBox="0 0 210 140" focusable="false">
 				<g
 					stroke="#141414"
 					stroke-width="5"
@@ -90,7 +91,15 @@ import { productos, categorias } from '../data/site';
 					</g>
 				</g>
 			</svg>
+			</div>
 		</div>
+		<img
+			class="hero-headphones"
+			src="/images/headphones_hero.webp"
+			alt="Audífonos con diseño de textil andino"
+			width="768"
+			height="1365"
+		/>
 		<div class="hero-content wrap">
 			<Hero />
 			<Bento />

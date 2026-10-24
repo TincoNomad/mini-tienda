@@ -1,19 +1,19 @@
 ---
 import { categorias } from '../data/site';
+
+const ordenBento = ['gaming', 'deportivos', 'inalambricos', 'economicos', 'estudio'];
+const bentoCategorias = ordenBento.map(
+	(slug) => categorias.find((categoria) => categoria.slug === slug)!,
+);
 ---
 
 <div class="bento">
+	<div class="bento-spacer" aria-hidden="true"></div>
 	{
-		categorias.map((cat, i) => (
-			<a
-				href={`/?cat=${cat.slug}#catalogo`}
-				class={i === 0 ? 'bento-big' : ''}
-				style={`background: ${cat.color}`}
-			>
-				{cat.nombre}
-				<small>
-					{cat.modelos} modelos {i === 0 ? ' · [foto]' : ''}
-				</small>
+		bentoCategorias.map((cat) => (
+			<a href={`/?cat=${cat.slug}#catalogo`} style={`background: ${cat.color}`}>
+				<img src={`/images/hero/${cat.slug}.webp`} alt="" />
+				<span>{cat.nombre}</span>
 			</a>
 		))
 	}

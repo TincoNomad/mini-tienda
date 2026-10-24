@@ -63,15 +63,15 @@ export const categorias: Categoria[] = [
 		modelos: 3,
 	},
 	{
-		slug: 'estudio',
-		nombre: 'Estudio',
-		color: '#35B6FF',
-		modelos: 3,
-	},
-	{
 		slug: 'economicos',
 		nombre: 'Económicos',
 		color: '#FFF200',
+		modelos: 3,
+	},
+	{
+		slug: 'estudio',
+		nombre: 'Estudio',
+		color: '#35B6FF',
 		modelos: 3,
 	},
 ];
