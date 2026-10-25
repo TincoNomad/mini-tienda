@@ -40,6 +40,7 @@ export interface Producto {
 	slug: string;
 	nombre: string;
 	categoria: string;
+	imagen: string;
 	precio: number;
 	specs: string[];
 }

@@ -112,7 +112,14 @@ function categoryName(slug: string) {
 
     <div v-if="filtered.length" class="grid">
       <article v-for="p in filtered" :key="p.slug" class="card">
-        <div class="placeholder" style="height: 150px;">[foto del producto]</div>
+        <img
+          class="card-img"
+          :src="p.imagen"
+          :alt="p.nombre"
+          width="700"
+          height="700"
+          loading="lazy"
+        />
         <span style="font-size: 14px; color: var(--muted);">{{ categoryName(p.categoria) }}</span>
         <strong style="font-size: 18px;">{{ p.nombre }}</strong>
         <span style="font-size: 20px; font-weight: 700;">{{ formatPrice(p.precio) }}</span>

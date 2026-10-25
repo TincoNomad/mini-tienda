@@ -30,7 +30,13 @@ const otros = productos
   </div>
 
   <section class="wrap two">
-    <div class="placeholder" style="min-height: 420px;">[foto principal del producto]</div>
+    <img
+      class="producto-img"
+      src={producto.imagen}
+      alt={producto.nombre}
+      width="700"
+      height="700"
+    />
     <div style="display: flex; flex-direction: column; gap: 20px; justify-content: center;">
       <span class="chip" style="align-self: flex-start; cursor: default;">
         {categoria?.nombre ?? producto.categoria}
@@ -57,9 +63,14 @@ const otros = productos
         <div class="grid">
           {otros.map((p) => (
             <article class="card">
-              <div class="placeholder" style="height: 150px;">
-                [foto del producto]
-              </div>
+              <img
+                class="card-img"
+                src={p.imagen}
+                alt={p.nombre}
+                width="700"
+                height="700"
+                loading="lazy"
+              />
               <span style="font-size: 14px; color: var(--muted);">
                 {categoria?.nombre ?? p.categoria}
               </span>
