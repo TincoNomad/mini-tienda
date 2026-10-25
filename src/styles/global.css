@@ -52,7 +52,6 @@ img {
 }
 
 .hero-content {
-  position: relative;
   width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
@@ -597,12 +596,37 @@ img {
 }
 
 @media (max-width: 600px) {
+  .hero-description {
+    max-width: none;
+  }
+
+  /* la foto sale del fondo del hero y pasa al flujo, entre el texto y los botones */
+  .hero-headphones {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .hero-title-os {
+    display: none;
+  }
+
   .bento {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    grid-auto-rows: 182px;
+    justify-self: center;
   }
 
   .bento > * {
     grid-column: auto;
+  }
+
+  .bento a {
+    align-items: center;
+    text-align: center;
   }
 
   .bento-spacer {
