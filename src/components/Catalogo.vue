@@ -73,13 +73,6 @@ function categoryName(slug: string) {
       aria-hidden="true"
       loading="lazy"
     />
-    <img
-      class="catalogo-flower catalogo-flower-bottom"
-      src="/images/flawer_decorator.webp"
-      alt=""
-      aria-hidden="true"
-      loading="lazy"
-    />
     <div class="wrap" style="padding-top: 56px; padding-bottom: 24px;">
     <h2 class="neon neon-small grad-catalogo" data-text="Catálogo" style="margin-bottom: 24px;">
       Catálogo

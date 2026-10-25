@@ -35,11 +35,12 @@ import { faqs } from '../../data/site';
 	}
 
 	.faq-flower {
+		--flower-w: clamp(80px, min(22vw, 35vh), 260px);
 		position: absolute;
-		right: 0;
-		bottom: clamp(24px, 3vw, 48px);
+		right: calc(var(--flower-w) * 0.18);
+		bottom: calc(var(--flower-w) * 0.18);
 		z-index: -1;
-		width: clamp(80px, 22vw, 260px);
+		width: var(--flower-w);
 		height: auto;
 		pointer-events: none;
 	}
