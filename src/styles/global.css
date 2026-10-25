@@ -66,6 +66,13 @@ img {
   justify-content: center;
 }
 
+/* el título y la descripción van juntos: en móvil se superponen a la foto */
+.hero-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .hero-eyebrow {
   margin: 0;
   color: var(--muted);
@@ -605,6 +612,19 @@ img {
 }
 
 @media (max-width: 600px) {
+  .hero-visual {
+    position: relative;
+  }
+
+  /* el texto se superpone a la foto: h1 arriba, descripción al fondo */
+  .hero-texto {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    gap: 12px;
+    justify-content: space-between;
+  }
+
   .hero-copy {
     gap: 12px;
   }
@@ -613,13 +633,16 @@ img {
     max-width: none;
   }
 
-  /* la foto sale del fondo del hero y pasa al flujo, entre el texto y los botones */
+  /* la foto sale del fondo del hero y pasa al flujo, sobre el h1 */
   .hero-headphones {
-    position: static;
+    position: relative;
+    z-index: 1;
+    left: auto;
+    bottom: auto;
     width: 100%;
     max-width: 100%;
     height: auto;
-    margin: 0 auto;
+    margin-top: -40px;
     transform: none;
   }
 
