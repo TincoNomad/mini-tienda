@@ -28,6 +28,12 @@ import { trustItems } from '../../data/site';
 		gap: 16px;
 	}
 
+	@media (max-width: 900px) {
+		.trust-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
 	.trust-item {
 		align-items: center;
 		gap: 6px;

@@ -296,14 +296,30 @@ img {
   .hero-headphones {
     height: 100%;
     bottom: -10%;
+    transform: translateX(-50%) translateY(calc(-10% + 20px));
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .catalogo-flower,
+  .como-pedir-flower,
+  .faq-flower {
+    display: none;
+  }
+
+  .hero-title-wrap {
+    margin-bottom: 0;
+    font-size: clamp(61.6px, 19.8vw, 96.8px); /* igual que el h1, si no la "os" no calza */
   }
 
   .hero-title {
-    font-size: clamp(56px, 18vw, 88px);
+    font-size: clamp(61.6px, 19.8vw, 96.8px); /* +10% */
   }
 
   .hero-description {
-    font-size: 20px;
+    max-width: 200px;
   }
 
   .hero-scroll {
