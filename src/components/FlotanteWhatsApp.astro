@@ -1,15 +1,15 @@
 ---
-import { siteConfig, waLink, waMessages } from '../data/site';
-
-const href = waLink(waMessages.vendedor);
+import { siteConfig, waMessages } from '../data/site';
 ---
 
 <a
 	class="wa-flotante"
-	href={href}
+	href="#"
 	target="_blank"
 	rel="noopener noreferrer"
 	aria-label={siteConfig.whatsappLabel}
+	data-wa
+	data-wa-msg={waMessages.vendedor}
 >
 	<span class="wa-flotante-label">{siteConfig.whatsappLabel}</span>
 	<span class="wa-flotante-icon" aria-hidden="true">

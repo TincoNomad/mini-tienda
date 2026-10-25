@@ -1,0 +1,208 @@
+---
+---
+
+<dialog id="wa-demo" class="wa-demo" aria-labelledby="wa-demo-title">
+	<form method="dialog" class="wa-demo-card">
+		<h2 id="wa-demo-title" class="wa-demo-title">Esta página es una demo</h2>
+		<p class="wa-demo-text">
+			Agregá tu número de WhatsApp para ver cómo funcionan los botones. Vas a abrir un chat
+			con tu propio número, así ves el mensaje ya escrito. Se guarda solo en esta pestaña y
+			se borra al cerrarla. Nunca llega a un servidor nuestro.
+			<a href="/demo" target="_blank" rel="noopener noreferrer">
+				Ver cómo tratamos tus datos
+			</a>.
+		</p>
+		<label for="wa-demo-input" class="wa-demo-label">Tu número de WhatsApp</label>
+		<input
+			id="wa-demo-input"
+			class="wa-demo-input"
+			type="tel"
+			inputmode="numeric"
+			placeholder="51987654321"
+			autocomplete="off"
+		/>
+		<p id="wa-demo-error" class="wa-demo-error" role="status" aria-live="polite"></p>
+		<div class="wa-demo-actions">
+			<button type="button" class="btn btn-secondary" id="wa-demo-cancel">Cancelar</button>
+			<button type="submit" class="btn">Probar WhatsApp</button>
+		</div>
+	</form>
+</dialog>
+
+<script>
+	import { sanitizarNumero, buildWaHref, WA_DEMO_KEY } from '../lib/whatsapp.ts';
+
+	const dialog = document.getElementById('wa-demo') as HTMLDialogElement | null;
+	const input = document.getElementById('wa-demo-input') as HTMLInputElement | null;
+	const error = document.getElementById('wa-demo-error') as HTMLParagraphElement | null;
+	const cancel = document.getElementById('wa-demo-cancel') as HTMLButtonElement | null;
+
+	const SELECTOR = 'a[data-wa]';
+	const FORMATO_ERROR = 'Ingresá entre 8 y 15 dígitos. Ejemplo: 51987654321';
+
+	let ultimoLink: HTMLAnchorElement | null = null;
+
+	function getNumero(): string {
+		return sanitizarNumero(sessionStorage.getItem(WA_DEMO_KEY) ?? '');
+	}
+
+	function setNumero(numero: string) {
+		sessionStorage.setItem(WA_DEMO_KEY, numero);
+	}
+
+	function updateLinks() {
+		const numero = getNumero();
+		document.querySelectorAll<HTMLAnchorElement>(SELECTOR).forEach((link) => {
+			const mensaje = link.dataset.waMsg ?? '';
+			link.href = numero && mensaje ? buildWaHref(numero, mensaje) : '#';
+		});
+	}
+
+	function abrirModal() {
+		if (!dialog) return;
+		dialog.showModal();
+		input?.focus();
+	}
+
+	function cerrarModal() {
+		if (!dialog) return;
+		dialog.close();
+		if (input) input.value = '';
+		if (error) error.textContent = '';
+		ultimoLink = null;
+	}
+
+	function interceptarClick(event: MouseEvent) {
+		const target = (event.target as HTMLElement).closest<HTMLAnchorElement>(SELECTOR);
+		if (!target) return;
+		if (getNumero()) return;
+		event.preventDefault();
+		ultimoLink = target;
+		abrirModal();
+	}
+
+	function enviar(event: Event) {
+		event.preventDefault();
+		if (!input || !error) return;
+
+		const numero = sanitizarNumero(input.value);
+		if (!numero) {
+			error.textContent = FORMATO_ERROR;
+			input.focus();
+			return;
+		}
+
+		setNumero(numero);
+		updateLinks();
+
+		const mensaje = ultimoLink?.dataset.waMsg ?? '';
+		cerrarModal();
+
+		if (mensaje) {
+			window.open(buildWaHref(numero, mensaje), '_blank', 'noopener,noreferrer');
+		}
+	}
+
+	if (dialog && input && error && cancel) {
+		document.addEventListener('click', interceptarClick);
+		cancel.addEventListener('click', cerrarModal);
+		dialog.addEventListener('click', (event) => {
+			if (event.target === dialog) cerrarModal();
+		});
+		dialog.addEventListener('submit', enviar);
+		updateLinks();
+	}
+</script>
+
+<style>
+	.wa-demo {
+		padding: 0;
+		border: none;
+		background: transparent;
+		max-width: 520px;
+		width: calc(100% - 32px);
+		color: var(--text);
+	}
+
+	.wa-demo::backdrop {
+		background: rgba(0, 0, 0, 0.45);
+	}
+
+	.wa-demo-card {
+		margin: 0;
+		padding: 28px;
+		border: 3px solid var(--text);
+		border-radius: 20px;
+		background: var(--card);
+		box-shadow: 8px 8px 0 var(--text);
+	}
+
+	.wa-demo-title {
+		margin: 0 0 12px;
+		font-size: 28px;
+		font-family: var(--font-display);
+	}
+
+	.wa-demo-text {
+		margin: 0 0 20px;
+		font-size: 16px;
+		line-height: 1.55;
+		color: var(--muted);
+	}
+
+	.wa-demo-text a {
+		color: var(--text);
+		font-weight: 700;
+	}
+
+	.wa-demo-label {
+		display: block;
+		margin-bottom: 8px;
+		font-weight: 700;
+		font-size: 15px;
+	}
+
+	.wa-demo-input {
+		width: 100%;
+		padding: 12px 16px;
+		border: 3px solid var(--text);
+		border-radius: 12px;
+		background: var(--bg);
+		color: var(--text);
+		font-size: 17px;
+		font-family: inherit;
+		box-sizing: border-box;
+	}
+
+	.wa-demo-input:focus {
+		outline: none;
+		box-shadow: 3px 3px 0 var(--accent);
+	}
+
+	.wa-demo-error {
+		min-height: 1.4em;
+		margin: 8px 0 0;
+		font-size: 14px;
+		font-weight: 700;
+		color: #c00000;
+	}
+
+	.wa-demo-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+		margin-top: 20px;
+	}
+
+	@media (max-width: 480px) {
+		.wa-demo-actions {
+			flex-direction: column-reverse;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.wa-demo-input {
+			transition: none;
+		}
+	}
+</style>

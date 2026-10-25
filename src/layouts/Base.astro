@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { siteConfig } from '../data/site';
+import DemoWhatsApp from '../components/DemoWhatsApp.astro';
 import FlotanteWhatsApp from '../components/FlotanteWhatsApp.astro';
 
 interface Props {
@@ -43,5 +44,6 @@ const themeVars = [
 	<body>
 		<slot />
 		<FlotanteWhatsApp />
+		<DemoWhatsApp />
 	</body>
 </html>

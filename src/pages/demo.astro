@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+	title="Uso de datos · Marketplace"
+	description="Aviso sobre el uso de datos en esta demo de catálogo con WhatsApp."
+>
+	<Header />
+	<main class="wrap" style="padding-block: 32px 48px;">
+		<article class="card" style="padding: 32px; max-width: 720px;">
+			<h1 class="neon" data-text="Uso de datos" style="font-size: clamp(40px, 6vw, 72px);">
+				Uso de datos
+			</h1>
+			<p style="font-size: 18px; line-height: 1.6; color: var(--muted);">
+				Esta página es una demo de portafolio. A continuación te explicamos qué pasa con
+				los datos que ingresás.
+			</p>
+
+			<h2 style="font-size: 24px; margin: 32px 0 12px;">Tu número de WhatsApp</h2>
+			<p style="font-size: 17px; line-height: 1.6;">
+				Cuando hacés clic en un botón de WhatsApp y todavía no hay un número configurado,
+				te pedimos que ingreses el tuyo. Ese número:
+			</p>
+			<ul style="font-size: 17px; line-height: 1.7; padding-left: 24px;">
+				<li>Se guarda en la memoria temporal de esta pestaña (<code>sessionStorage</code>).</li>
+				<li>No se envía a ningún servidor nuestro.</li>
+				<li>Se usa solo para armar el enlace a <code>https://wa.me/</code>.</li>
+				<li>Se borra cuando cerrás la pestaña (salvo que tu navegador la restaure).</li>
+			</ul>
+
+			<h2 style="font-size: 24px; margin: 32px 0 12px;">Cookies y analytics</h2>
+			<p style="font-size: 17px; line-height: 1.6;">
+				Este sitio no usa cookies de seguimiento ni herramientas de analytics. No guardamos
+				ni procesamos información personal en nuestros servidores.
+			</p>
+
+			<h2 style="font-size: 24px; margin: 32px 0 12px;">Enlaces externos</h2>
+			<p style="font-size: 17px; line-height: 1.6;">
+				Los botones de WhatsApp te llevan a <code>wa.me</code>, un servicio de Meta. Su uso
+				queda sujeto a las políticas de privacidad de WhatsApp.
+			</p>
+
+			<p style="margin-top: 32px;">
+				<a class="btn" href="/">Volver al catálogo</a>
+			</p>
+		</article>
+	</main>
+	<Footer />
+</Base>

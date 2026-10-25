@@ -3,7 +3,6 @@ import type { Categoria, FaqItem, Producto, SiteConfig, TrustItem } from '../typ
 export const siteConfig: SiteConfig = {
 	name: '[MARCA]',
 	description: 'Compara modelos y pídelos por WhatsApp.',
-	whatsappNumber: import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '',
 	whatsappLabel: 'Hablar con un vendedor',
 	contact: {
 		phone: '',
@@ -30,12 +29,6 @@ export const siteConfig: SiteConfig = {
 		faq: true,
 	},
 };
-
-export function waLink(message: string) {
-	const numero = siteConfig.whatsappNumber;
-	if (!numero) return '#';
-	return `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
-}
 
 export const waMessages = {
 	general: 'Hola, quiero información sobre audífonos.',

@@ -1,5 +1,5 @@
 ---
-import { siteConfig, waLink, waMessages } from '../data/site';
+import { siteConfig, waMessages } from '../data/site';
 
 interface Props {
 	texto?: string;
@@ -12,8 +12,8 @@ const {
 	clase = 'btn',
 	message = waMessages.vendedor,
 } = Astro.props;
-
-const href = waLink(message);
 ---
 
-<a class={clase} href={href} target="_blank" rel="noopener noreferrer">{texto}</a>
+<a class={clase} href="#" target="_blank" rel="noopener noreferrer" data-wa data-wa-msg={message}>
+	{texto}
+</a>
