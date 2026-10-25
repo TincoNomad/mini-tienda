@@ -88,6 +88,15 @@ img {
 }
 
 .hero-title-wrap {
+  /* 20%-80% = mayúsculas a línea base; orden por círculo cromático para que no rebote */
+  --neon-grad: linear-gradient(
+    180deg,
+    #ff2e93 0 20%,
+    #ff7a00 35%,
+    #fff200 50%,
+    #b6ff00 65%,
+    #35b6ff 80% 100%
+  );
   position: relative;
   width: fit-content;
   margin-bottom: clamp(50px, 3.5vw, 90px);
@@ -667,5 +676,16 @@ img {
 
   .bento-spacer {
     display: none;
+  }
+}
+
+/* fondo tipo card para la descripción: en móvil y desde 750px */
+@media (max-width: 600px), (min-width: 750px) {
+  .hero-description {
+    /* mismos valores que .card, para no inventar un estilo nuevo */
+    background: var(--card);
+    border: 3px solid var(--text);
+    box-shadow: 4px 4px 0 var(--text);
+    padding: 12px;
   }
 }
