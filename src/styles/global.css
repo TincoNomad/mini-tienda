@@ -605,6 +605,10 @@ img {
 }
 
 @media (max-width: 600px) {
+  .hero-copy {
+    gap: 12px;
+  }
+
   .hero-description {
     max-width: none;
   }
